@@ -8,6 +8,7 @@ import java.util.Scanner;
 import org.springframework.stereotype.Service;
 
 import br.gov.se.sefaz.spring.data.orm.Funcionario;
+import br.gov.se.sefaz.spring.data.orm.FuncionarioProjecao;
 import br.gov.se.sefaz.spring.data.repository.FuncionarioRepository;
 
 @Service
@@ -32,6 +33,7 @@ public class RelatoriosService {
 			System.out.println( "1 - Busca Funcionário por nome" );
 			System.out.println( "2 - Busca Funcionario por nome, data de admissão e salário.");
 			System.out.println( "3 - Busca Funcionario por data de admissão.");
+			System.out.println( "4 - Listar salários dos Funcionários.");
 			
 			switch ( scanner.nextInt() ) {
 				case 0:
@@ -45,6 +47,9 @@ public class RelatoriosService {
 					break;
 				case 3:
 					buscarFuncionarioDataContratacao();
+					break;
+				case 4:
+					buscarSalarioFuncionafio();
 					break;
 				default:
 					system = false;
@@ -109,6 +114,12 @@ public class RelatoriosService {
 			list.forEach(System.out::println);
 			System.out.println("\n");
 		}		
+	}
+	
+	private void buscarSalarioFuncionafio() {		
+		List<FuncionarioProjecao> list = funcionarioRepository.findFuncionarioSalario();		
+		list.forEach( f -> System.out.println("Funcionário: " + f.getNome() + " | id: " + f.getId() + " | salário: " + f.getSalario() ) );	
+		System.out.println("\n");
 	}
 
 }
