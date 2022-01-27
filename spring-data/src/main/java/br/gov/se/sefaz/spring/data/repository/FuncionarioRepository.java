@@ -3,9 +3,7 @@ package br.gov.se.sefaz.spring.data.repository;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.hibernate.query.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import br.gov.se.sefaz.spring.data.orm.Funcionario;
