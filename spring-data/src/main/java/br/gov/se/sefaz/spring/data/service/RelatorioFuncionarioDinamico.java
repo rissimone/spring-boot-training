@@ -43,23 +43,25 @@ public class RelatorioFuncionarioDinamico {
 		float salario = scannerSalario.nextFloat();
 		
 		if(salario == 0)
-			salario = (Float) null;
+			salario = 0;
 		
 		System.out.print("Digite a data de contratação: ");
 		Scanner scannerContratacao = new Scanner(System.in);
-		String data = scannerContratacao.next();
-		
+		String data = scannerContratacao.next();		
 		LocalDate dataContratacao; 
 		
 		if(data.equalsIgnoreCase(data)) {
-			data = null;
+			dataContratacao = null;
 		} else {
 			dataContratacao = LocalDate.parse(data, formatter);
 		}
 		
 		List<Funcionario> list = funcionarioRepository.findAll(
 				Specification.where(
-						SpecificationFuncionario.nome(nome))
+					SpecificationFuncionario.nome(nome))
+					.or(SpecificationFuncionario.cpf(cpf))
+					.or(SpecificationFuncionario.salario(salario))
+					.or(SpecificationFuncionario.dataContratacao(dataContratacao))
 				);		
 		
 		System.out.println();
