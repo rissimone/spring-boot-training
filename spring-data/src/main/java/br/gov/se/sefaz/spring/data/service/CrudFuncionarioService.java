@@ -1,6 +1,5 @@
 package br.gov.se.sefaz.spring.data.service;
 
-import java.util.Collection;
 import java.util.Scanner;
 
 import org.springframework.data.domain.Page;
@@ -9,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import br.gov.se.sefaz.spring.data.SpringDataApplication;
 import br.gov.se.sefaz.spring.data.orm.Cargo;
 import br.gov.se.sefaz.spring.data.orm.Funcionario;
 import br.gov.se.sefaz.spring.data.repository.FuncionarioRepository;
@@ -71,7 +69,7 @@ public class CrudFuncionarioService {
 		System.out.println("Qual página vc deseja visualizar?");
 		Integer page = scannerPage.nextInt();
 		
-		Pageable pageable = PageRequest.of( (page-1), 5, Sort.unsorted() );		
+		Pageable pageable = PageRequest.of( (page-1), 5, Sort.by(Sort.Direction.ASC, "nome") );		
 		Page<Funcionario> funcionarios = funcionarioRepository.findAll(pageable);
 		
 		System.out.println(funcionarios);
